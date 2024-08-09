@@ -23,5 +23,5 @@ nix run .#fireplace
 
 ## Run [lifecycler](https://github.com/cxreiff/lifecycler)
 ```bash
-nix develop --command lifecycler 
+nix run .#lifecycler
 ```
