@@ -79,12 +79,23 @@
         };
 
         nativeBuildInputs = with pkgs; [
+          autoPatchelfHook
           alsa-lib
           pkg-config
           systemdLibs
           libinput
           wayland
           wayland-protocols
+        ];
+
+        # winit(egui) is having trouble running on nixos without libGL & libxkbcommon on LD_LIBRARY_APTH
+        # see https://github.com/rust-windowing/winit/issues/493
+        # lib list: https://github.com/emilk/egui/discussions/1587#discussioncomment-2698470
+        # use autoPatchelfHook, but lifecycler cannot find libs in buildInputs
+        # https://nixos.org/manual/nixpkgs/stable/#setup-hook-autopatchelfhook
+        runtimeDependencies = with pkgs; [
+          libGL
+          libxkbcommon
         ];
       };
 
@@ -109,18 +120,7 @@
         tetrs = tetrs;
         confetty = confetty;
         fireplace = fireplace;
-      };
-      devShell.x86_64-linux = pkgs.mkShell rec {
-        name = "lifecycler";
-        buildInputs = [
-          lifecycler
-          pkgs.libGL
-          pkgs.libxkbcommon
-        ];
-        # winit(egui) is having trouble running on nixos
-        # see https://github.com/rust-windowing/winit/issues/493
-        # solution: https://github.com/emilk/egui/discussions/1587#discussioncomment-2698470
-        LD_LIBRARY_PATH = "${pkgs.lib.makeLibraryPath buildInputs}";
+        lifecycler = lifecycler;
       };
     };
 }
