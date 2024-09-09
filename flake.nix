@@ -114,6 +114,89 @@
         nativeBuildInputs = with pkgs; [ ncurses ];
         installFlags = [ "DESTDIR=$(out)/bin" ];
       };
+
+      # from https://github.com/NixOS/nixpkgs/pull/336646
+      ffts = pkgs.stdenv.mkDerivation rec {
+        pname = "ffts";
+        version = "unstable-2019-03-19";
+
+        src = pkgs.fetchFromGitHub {
+          owner = "linkotec";
+          repo = "ffts";
+          rev = "2c8da4877588e288ff4cd550f14bec2dc7bf668c";
+          hash = "sha256-Cj0n7fwFAu6+3ojgczL0Unobdx/XzGNFvNVMXdyHXE4=";
+        };
+
+        nativeBuildInputs = with pkgs; [
+          cmake
+          git
+        ];
+        buildInputs = [ ];
+
+        cmakeFlags = [
+          "-DCURRENT_GIT_VERSION=${pkgs.lib.substring 0 7 src.rev}"
+          "-DENABLE_SHARED=ON"
+          "-Wno-deprecated"
+        ];
+
+      };
+
+      scopelhal-apps = pkgs.stdenv.mkDerivation rec {
+        pname = "scopehal-apps";
+        version = "unstable-master";
+
+        src = pkgs.fetchFromGitHub {
+          owner = "ngscopeclient";
+          repo = "scopehal-apps";
+          rev = "2dfa83189a62c0d3b7109c15a6dccba226d9172e";
+          hash = "sha256-eVHkMbf5Ze2Vto4VSxgcBfeLujQ2RqxjDfAdwQ2FwJU";
+          fetchSubmodules = true;
+        };
+
+        nativeBuildInputs = with pkgs; [
+          cmake
+          wrapGAppsNoGuiHook
+        ];
+
+        buildInputs = [
+          pkgs.pkg-config
+          pkgs.libsigcxx
+          pkgs.gtkmm3
+          pkgs.cairomm
+          pkgs.yaml-cpp
+          pkgs.catch2
+          pkgs.glfw
+          pkgs.libtirpc
+          pkgs.liblxi
+          pkgs.glew
+          pkgs.libllvm
+          pkgs.libdrm
+          pkgs.elfutils
+          pkgs.xorg.libxcb
+          pkgs.zstd
+          pkgs.xorg.libxshmfence
+          pkgs.xorg.xcbutilkeysyms
+          pkgs.systemd
+          pkgs.vulkan-headers
+          pkgs.vulkan-loader
+          pkgs.vulkan-tools
+          pkgs.spirv-tools
+          pkgs.glslang
+          pkgs.shaderc
+          ffts
+        ];
+
+        enableParallelBuilding = true;
+
+        # Targets InitializeSearchPaths
+        postPatch = ''
+          substituteInPlace lib/scopehal/scopehal.cpp \
+            --replace '"/share/' '"/../share/'
+        '';
+
+        installFlags = [ "DESTDIR=$(out)/bin" ];
+      };
+
     in
     {
       packages.x86_64-linux = {
@@ -121,6 +204,7 @@
         confetty = confetty;
         fireplace = fireplace;
         lifecycler = lifecycler;
+        scopehal-apps = scopelhal-apps;
       };
     };
 }
