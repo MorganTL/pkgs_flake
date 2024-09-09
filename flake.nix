@@ -230,6 +230,43 @@
         ];
       };
 
+      scopehal-sigrok-bridge = pkgs.stdenv.mkDerivation {
+        pname = "scopehal-sigrok-bridge";
+        version = "0.0.0";
+
+        src = pkgs.fetchFromGitHub {
+          owner = "Morgantl";
+          repo = "scopehal-sigrok-bridge";
+          rev = "a1ac4b71fe5bd0ec9cb1257e81c463556ecf4fe4";
+          hash = "sha256-C07gTldi4RQPyJ8jowKFfISMykOfeZff7wu6OvFa06c=";
+          # hash = pkgs.lib.fakeHash;
+          fetchSubmodules = true;
+        };
+
+        nativeBuildInputs = with pkgs; [
+          cmake
+          pkg-config
+          makeWrapper
+        ];
+
+        buildInputs = [
+          libsigrok4dsl
+          pkgs.libusb1
+
+          # needed by libsigrok4dsl
+          pkgs.pcre2
+          pkgs.glib
+          pkgs.libzip
+          pkgs.libserialport
+        ];
+
+        # cmakeFlags = [
+        #   "-Wno-error"
+        #   "-DENABLE_SHARED=ON"
+        #   "-Wno-deprecated"
+        # ];
+      };
+
     in
     {
       packages.x86_64-linux = {
@@ -238,6 +275,7 @@
         fireplace = fireplace;
         lifecycler = lifecycler;
         scopehal-apps = scopelhal-apps;
+        scopehal-sigrok-bridge = scopehal-sigrok-bridge;
       };
     };
 }
