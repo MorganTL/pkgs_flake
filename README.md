@@ -16,6 +16,11 @@ nix run .#confetty -- --name fireworks
 nix run .#confetty -- --name stars
 ```
 
+## Run [binsider](https://github.com/orhun/binsider)
+```bash
+nix run .#binsider
+```
+
 ## Run [fireplace](https://github.com/Wyatt915/fireplace)
 ```bash
 nix run .#fireplace
