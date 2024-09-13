@@ -250,39 +250,39 @@
 
       scopehal-sigrok-bridge = pkgs.stdenv.mkDerivation {
         pname = "scopehal-sigrok-bridge";
-        version = "0.0.0";
+        version = "0-unstable-2022-05-08";
 
         src = pkgs.fetchFromGitHub {
-          owner = "Morgantl";
+          owner = "ngscopeclient";
           repo = "scopehal-sigrok-bridge";
-          rev = "a1ac4b71fe5bd0ec9cb1257e81c463556ecf4fe4";
+          rev = "fe5029aa81476c46c20915c3fc79ea1107303efe";
           hash = "sha256-C07gTldi4RQPyJ8jowKFfISMykOfeZff7wu6OvFa06c=";
-          # hash = pkgs.lib.fakeHash;
           fetchSubmodules = true;
         };
 
         nativeBuildInputs = with pkgs; [
           cmake
           pkg-config
-          makeWrapper
-        ];
-
-        buildInputs = [
           libsigrok4dsl
-          pkgs.libusb1
-
-          # needed by libsigrok4dsl
-          pkgs.pcre2
-          pkgs.glib
-          pkgs.libzip
-          pkgs.libserialport
         ];
 
-        # cmakeFlags = [
-        #   "-Wno-error"
-        #   "-DENABLE_SHARED=ON"
-        #   "-Wno-deprecated"
-        # ];
+        buildInputs = with pkgs; [
+          glib
+          libserialport
+          libusb1
+          libzip
+          pcre2
+        ];
+
+        # see https://github.com/NixOS/nixpkgs/pull/73377/files
+        # bypass error: format not a string literal and no format arguments
+        hardeningDisable = [ "format" ];
+
+        # No install phase in make file
+        installPhase = ''
+          mkdir -p $out/bin
+          cp scopehal-sigrok-bridge $out/bin
+        '';
       };
 
       scopehal-uhd-bridge = pkgs.stdenv.mkDerivation {
