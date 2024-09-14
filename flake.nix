@@ -283,6 +283,12 @@
           mkdir -p $out/bin
           cp scopehal-sigrok-bridge $out/bin
         '';
+
+        postPatch = ''
+          substituteInPlace src/main.cpp \
+            --replace '"/usr/local/share/DSView/res/' '"${libsigrok4dsl.src}/DSView/res/'
+        '';
+
       };
 
       scopehal-uhd-bridge = pkgs.stdenv.mkDerivation {
