@@ -253,10 +253,10 @@
         version = "0-unstable-2022-05-08";
 
         src = pkgs.fetchFromGitHub {
-          owner = "ngscopeclient";
+          owner = "MorganTL";
           repo = "scopehal-sigrok-bridge";
-          rev = "fe5029aa81476c46c20915c3fc79ea1107303efe";
-          hash = "sha256-C07gTldi4RQPyJ8jowKFfISMykOfeZff7wu6OvFa06c=";
+          rev = "e96ebfb310e022faa94307f10004e7230de7aef1";
+          hash = "sha256-YRA7rRAE+HCWo7BV9T0rW/2cw5bdIPYrJMKSKbTCUPE=";
           fetchSubmodules = true;
         };
 
