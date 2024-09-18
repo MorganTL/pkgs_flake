@@ -206,6 +206,8 @@
 
         enableParallelBuilding = true;
 
+        patch = [ ./dslogic_plus.patch ];
+
         # Targets InitializeSearchPaths
         postPatch = ''
           substituteInPlace lib/scopehal/scopehal.cpp \

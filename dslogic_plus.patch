@@ -1,0 +1,27 @@
+--- a/lib/scopehal/DSLabsOscilloscope.cpp
++++ b/lib/scopehal/DSLabsOscilloscope.cpp
+@@ -200,6 +200,14 @@ void DSLabsOscilloscope::IdentifyHardware()
+         m_digitalChannelCount = 0;
+ 
+     }
++    else if (m_model == "DSLogic Plus")
++    {
++        m_series = DSLOGIC_PLUS;
++        LogDebug("Found DSLogic Plus\n");
++
++        m_analogChannelCount = 0;
++        m_digitalChannelCount = 16;
++    }
+     else if (m_model == "DSLogic U3Pro16")
+     {
+         m_series = DSLOGIC_U3PRO16;
+--- a/lib/scopehal/DSLabsOscilloscope.h
++++ b/lib/scopehal/DSLabsOscilloscope.h
+@@ -102,6 +102,7 @@ public:
+     enum Series
+     {
+         DSCOPE_U3P100,
++        DSLOGIC_PLUS,
+         DSLOGIC_U3PRO16,
+ 
+         SERIES_UNKNOWN    //unknown or invalid model name
