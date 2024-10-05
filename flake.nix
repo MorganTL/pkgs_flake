@@ -166,8 +166,8 @@
         src = pkgs.fetchFromGitHub {
           owner = "ngscopeclient";
           repo = "scopehal-apps";
-          rev = "2dfa83189a62c0d3b7109c15a6dccba226d9172e";
-          hash = "sha256-eVHkMbf5Ze2Vto4VSxgcBfeLujQ2RqxjDfAdwQ2FwJU";
+          rev = "d5cd16777dcdb88603042bbbd44c318bb9a36b44";
+          hash = "sha256-QssNo+6vM1qtQSpGn+ciEhDG8PIrNrmqxm/kUb4NODQ=";
           fetchSubmodules = true;
         };
 
