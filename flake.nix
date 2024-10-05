@@ -160,7 +160,7 @@
       };
 
       scopelhal-apps = pkgs.stdenv.mkDerivation rec {
-        pname = "scopehal-apps";
+        pname = "ngscopeclient";
         version = "unstable-master";
 
         src = pkgs.fetchFromGitHub {
@@ -204,8 +204,6 @@
           ffts
         ];
 
-        enableParallelBuilding = true;
-
         patch = [ ./dslogic_plus.patch ];
 
         # Targets InitializeSearchPaths
@@ -214,7 +212,6 @@
             --replace '"/share/' '"/../share/'
         '';
 
-        installFlags = [ "DESTDIR=$(out)/bin" ];
       };
 
       # from https://github.com/NixOS/nixpkgs/blob/ab70b01c83dd5ba876d8d79ef5cba24ef185c8c9/pkgs/applications/science/electronics/dsview/libsigrok4dsl.nix
