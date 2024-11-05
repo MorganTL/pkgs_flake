@@ -85,6 +85,36 @@
 
         cargoHash = "sha256-lXYTZ3nvLrfEgo7AY/qSQYpXsyrdJuQQw43xREezNn0=";
       };
+
+      plastic-tui = rustPlatform.buildRustPackage {
+        version = "0.1.0";
+        pname = "plastic_tui";
+        src = pkgs.fetchFromGitHub {
+          owner = "Amjad50";
+          repo = "plastic";
+          rev = "f254082ceb71fa092df890e26e767026819891ce";
+          hash = "sha256-YAb4zTQpRigO3FeugX033DnwSVAQ+h5cBED8y3wCmyg=";
+        };
+
+        # compile only the `plastic_tui` cargo workspace members 
+        # https://discourse.nixos.org/t/using-buildrustcrate-to-build-a-project-within-a-cargo-workspace/15672/8
+        buildAndTestSubdir = "plastic_tui";
+
+        buildInputs = with pkgs; [
+          alsa-lib
+          libgcc
+          libudev-zero
+        ];
+
+        nativeBuildInputs = with pkgs; [
+          pkg-config
+          # systemdLibs
+          # libinput
+        ];
+
+        cargoHash = "sha256-XnH8GM3KBhzuUOhIApW/4BkJr1UzeC6yHnRSNzwU79A=";
+      };
+
       lifecycler = nsk.buildPackage {
         # one of the dependencies of lifecycler doens't have Cargo.lock file
         # naersk is one of the builder that directly download dependencies binary from cargo.io 
@@ -327,6 +357,7 @@
         tetrs = tetrs;
         binsider = binsider;
         confetty = confetty;
+        plastic-tui = plastic-tui;
         fireplace = fireplace;
         lifecycler = lifecycler;
         scopehal-apps = scopelhal-apps;
