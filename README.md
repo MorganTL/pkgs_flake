@@ -21,6 +21,11 @@ nix run .#confetty -- --name stars
 nix run .#binsider
 ```
 
+## Run [plastic-tui](https://github.com/Amjad50/plastic)
+```bash
+nix run .#plastic-tui
+```
+
 ## Run [fireplace](https://github.com/Wyatt915/fireplace)
 ```bash
 nix run .#fireplace
