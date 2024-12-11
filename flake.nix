@@ -8,6 +8,10 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -16,6 +20,7 @@
       nixpkgs,
       naersk,
       rust-overlay,
+      treefmt-nix,
     }:
     let
       pkgs = import nixpkgs {
@@ -367,6 +372,12 @@
       };
     in
     {
+      formatter.x86_64-linux = treefmt-nix.lib.mkWrapper nixpkgs.legacyPackages.x86_64-linux {
+        projectRootFile = "flake.nix";
+        # see for more options https://flake.parts/options/treefmt-nix
+        programs.nixfmt.enable = true;
+      };
+
       packages.x86_64-linux = {
         tetrs = tetrs;
         binsider = binsider;
