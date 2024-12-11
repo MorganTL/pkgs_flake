@@ -41,23 +41,6 @@
       };
 
       # RUST pkgs
-      tetrs = rustPlatform.buildRustPackage {
-        version = "0.1.0";
-        pname = "tetrs_terminal";
-        src = pkgs.fetchFromGitHub {
-          owner = "Strophox";
-          repo = "tetrs";
-          rev = "93dc5f6700d32c6d948428a4f6d86c97e33a9764";
-          hash = "sha256-lv39ftC6RuYdbMHsiZPMST9Ewtl7lwHl0qAn8VqmoWk=";
-        };
-
-        cargoHash = "sha256-qCf646DGOEJ8xMxxUaBB1L8pEUalsHy5YznYWODqpiY= ";
-
-        cargoPatches = [
-          # a patch file to add/update Cargo.lock in the source code
-          ./tetrs-add-cargo-lock.patch
-        ];
-      };
 
       confetty = rustPlatform.buildRustPackage {
         version = "0.1.0";
@@ -72,6 +55,7 @@
         cargoHash = "sha256-zd9iJxYtBUo10S3yej4Xm8mS7mbiym9G953vF1nVMEM=";
       };
 
+      tetrs = pkgs.callPackage ./src/rust/tetrs-terminal.nix { inherit rustPlatform; };
       tracker = pkgs.callPackage ./src/rust/tracker.nix { inherit rustPlatform; };
 
       binsider = rustPlatform.buildRustPackage {
