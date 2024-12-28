@@ -41,12 +41,13 @@
       };
 
       # RUST pkgs
-      tetrs = pkgs.callPackage ./src/rust/tetrs-terminal.nix { inherit rustPlatform; };
-      confetty = pkgs.callPackage ./src/rust/confetty-rs.nix { inherit rustPlatform; };
-      tracker = pkgs.callPackage ./src/rust/tracker.nix { inherit rustPlatform; };
-      binsider = pkgs.callPackage ./src/rust/binsider.nix { inherit rustPlatform; };
-      plastic-tui = pkgs.callPackage ./src/rust/plastic-tui.nix { inherit rustPlatform; };
-      lifecycler = pkgs.callPackage ./src/rust/lifecycler.nix { inherit nsk; };
+      rustdir = ./src/rust;
+      tetrs = pkgs.callPackage "${rustdir}/tetrs-terminal.nix" { inherit rustPlatform; };
+      confetty = pkgs.callPackage "${rustdir}/confetty-rs.nix" { inherit rustPlatform; };
+      tracker = pkgs.callPackage "${rustdir}/tracker.nix" { inherit rustPlatform; };
+      binsider = pkgs.callPackage "${rustdir}/binsider.nix" { inherit rustPlatform; };
+      plastic-tui = pkgs.callPackage "${rustdir}/plastic-tui.nix" { inherit rustPlatform; };
+      lifecycler = pkgs.callPackage "${rustdir}/lifecycler.nix" { inherit nsk; };
 
       # C/C++ pkgs
       fireplace = pkgs.stdenv.mkDerivation {
