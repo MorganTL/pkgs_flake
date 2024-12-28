@@ -48,6 +48,7 @@
       binsider = pkgs.callPackage "${rustdir}/binsider.nix" { inherit rustPlatform; };
       plastic-tui = pkgs.callPackage "${rustdir}/plastic-tui.nix" { inherit rustPlatform; };
       lifecycler = pkgs.callPackage "${rustdir}/lifecycler.nix" { inherit nsk; };
+      angry-oxide = pkgs.callPackage "${rustdir}/angry-oxide.nix" { inherit rustPlatform; };
 
       # C/C++ pkgs
       fireplace = pkgs.stdenv.mkDerivation {
@@ -269,6 +270,7 @@
         plastic-tui = plastic-tui;
         fireplace = fireplace;
         lifecycler = lifecycler;
+        angry-oxide = angry-oxide;
         scopehal-apps = scopelhal-apps;
         scopehal-sigrok-bridge = scopehal-sigrok-bridge;
         scopehal-uhd-bridge = scopehal-uhd-bridge;
