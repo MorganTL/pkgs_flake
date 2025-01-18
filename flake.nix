@@ -50,6 +50,10 @@
       lifecycler = pkgs.callPackage "${rustdir}/lifecycler.nix" { inherit nsk; };
       angry-oxide = pkgs.callPackage "${rustdir}/angry-oxide.nix" { inherit rustPlatform; };
 
+      # Python pkgs
+      pythondir = ./src/python;
+      khinsider = pkgs.callPackage "${pythondir}/khinsider.nix" { };
+
       # C/C++ pkgs
       fireplace = pkgs.stdenv.mkDerivation {
         pname = "fireplace";
@@ -271,6 +275,7 @@
         fireplace = fireplace;
         lifecycler = lifecycler;
         angry-oxide = angry-oxide;
+        khinsider = khinsider;
         scopehal-apps = scopelhal-apps;
         scopehal-sigrok-bridge = scopehal-sigrok-bridge;
         scopehal-uhd-bridge = scopehal-uhd-bridge;
