@@ -267,18 +267,26 @@
       };
 
       packages.x86_64-linux = {
-        tetrs = tetrs;
-        binsider = binsider;
-        confetty = confetty;
-        tracker = tracker;
-        plastic-tui = plastic-tui;
-        fireplace = fireplace;
-        lifecycler = lifecycler;
-        angry-oxide = angry-oxide;
-        khinsider = khinsider;
-        scopehal-apps = scopelhal-apps;
-        scopehal-sigrok-bridge = scopehal-sigrok-bridge;
-        scopehal-uhd-bridge = scopehal-uhd-bridge;
+        terminal-doom = terminal-doom;
+        # RUST pkgs
+        inherit
+          angry-oxide
+          binsider
+          confetty
+          fireplace
+          lifecycler
+          plastic-tui
+          tetrs
+          tracker
+          ;
+        # Python pkgs
+        inherit khinsider;
+        # C/C++ pkgs
+        inherit
+          scopehal-sigrok-bridge
+          scopehal-uhd-bridge
+          scopelhal-apps
+          ;
       };
     };
 }
