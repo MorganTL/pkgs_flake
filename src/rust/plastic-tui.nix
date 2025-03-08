@@ -25,5 +25,6 @@ rustPlatform.buildRustPackage {
     # libinput
   ];
 
-  cargoHash = "sha256-XnH8GM3KBhzuUOhIApW/4BkJr1UzeC6yHnRSNzwU79A=";
+  cargoHash = "sha256-96OxDDV37y+vosp4MHaGZs/DNclPVvrzyxvNaq+Epic=";
+  useFetchCargoVendor = true;
 }
