@@ -1,6 +1,6 @@
 { pkgs, nsk }:
 nsk.buildPackage {
-  # one of the dependencies of lifecycler doens't have Cargo.lock file
+  # one of the dependencies of lifecycler doesn't have Cargo.lock file
   # naersk is one of the builder that directly download dependencies binary from cargo.io 
   # Thus, bypassing the missing Cargo.lock problem
   src = pkgs.fetchFromGitHub {

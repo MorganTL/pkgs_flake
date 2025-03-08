@@ -38,7 +38,7 @@ nix run .#lifecycler
 
 ## Run [scopehal-sigrok-bridge](https://github.com/ngscopeclient/scopehal-sigrok-bridge)
 ```bash
-nix run .#scopehal-sigrok-bridg virtual-demo
-nix run .#scopehal-sigrok-bridg DSLogic
-nix run .#scopehal-sigrok-bridg DSCope
+nix run .#scopehal-sigrok-bridge virtual-demo
+nix run .#scopehal-sigrok-bridge DSLogic
+nix run .#scopehal-sigrok-bridge DSCope
 ```

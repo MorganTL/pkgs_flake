@@ -10,7 +10,7 @@ rustPlatform.buildRustPackage {
   };
 
   checkFlags = [
-    # both tests are reading the directoy name which is not accessible
+    # both tests are reading the directory name which is not accessible
     "--skip=app::tests::test_extract_strings"
     "--skip=app::tests::test_init"
   ];
