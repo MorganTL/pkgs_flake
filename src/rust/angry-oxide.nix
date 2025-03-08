@@ -18,5 +18,6 @@ rustPlatform.buildRustPackage {
         GIT_CONFIG_VALUE_0 = "git@github.com:";
       });
 
-  cargoHash = "sha256-CIk+ig92G2TEweCgutcIHHVXTZsbOalw0+7DXIaPPHc=";
+  cargoHash = "sha256-/XCEDYavIlAiZ0uveCS4h67o4y1jnmBCsBFq8eHf3bE=";
+  useFetchCargoVendor = true;
 }
