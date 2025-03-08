@@ -9,7 +9,7 @@ rustPlatform.buildRustPackage {
     hash = "sha256-YAb4zTQpRigO3FeugX033DnwSVAQ+h5cBED8y3wCmyg=";
   };
 
-  # compile only the `plastic_tui` cargo workspace members 
+  # compile only the `plastic_tui` cargo workspace members
   # https://discourse.nixos.org/t/using-buildrustcrate-to-build-a-project-within-a-cargo-workspace/15672/8
   buildAndTestSubdir = "plastic_tui";
 
