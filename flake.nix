@@ -12,6 +12,11 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs =
@@ -21,10 +26,13 @@
       naersk,
       rust-overlay,
       treefmt-nix,
+      git-hooks,
+      ...
     }:
     let
+      system = "x86_64-linux";
       pkgs = import nixpkgs {
-        system = "x86_64-linux";
+        inherit system;
         overlays = [ (import rust-overlay) ];
       };
       rust = pkgs.rust-bin.stable."1.81.0".default.override {
@@ -260,10 +268,33 @@
       };
     in
     {
-      formatter.x86_64-linux = treefmt-nix.lib.mkWrapper nixpkgs.legacyPackages.x86_64-linux {
+      checks.${system}.default = git-hooks.lib.${system}.run {
+        src = ./.;
+        hooks = {
+          deadnix.enable = true;
+          nixfmt-rfc-style.enable = true;
+          statix = {
+            enable = true;
+            settings.config = "./statix.toml";
+            settings.format = "stderr";
+          };
+          typos.enable = true;
+        };
+      };
+      formatter.${system} = treefmt-nix.lib.mkWrapper nixpkgs.legacyPackages.x86_64-linux {
         projectRootFile = "flake.nix";
         # see for more options https://flake.parts/options/treefmt-nix
         programs.nixfmt.enable = true;
+      };
+      devShells.${system}.default = pkgs.mkShell {
+        name = "nixos-system";
+        shellHook = ''
+          ${self.checks.${system}.default.shellHook}
+        '';
+        packages = [
+          self.checks.${system}.default.enabledPackages
+          khinsider
+        ];
       };
 
       packages.x86_64-linux = {
@@ -286,12 +317,6 @@
           scopehal-uhd-bridge
           scopelhal-apps
           ;
-      };
-
-      devShell.x86_64-linux = pkgs.mkShell {
-        packages = [
-          khinsider
-        ];
       };
     };
 }
