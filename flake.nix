@@ -267,7 +267,6 @@
       };
 
       packages.x86_64-linux = {
-        terminal-doom = terminal-doom;
         # RUST pkgs
         inherit
           angry-oxide
