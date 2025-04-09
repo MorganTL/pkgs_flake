@@ -303,7 +303,6 @@
           angry-oxide
           binsider
           confetty
-          fireplace
           lifecycler
           plastic-tui
           tetrs
@@ -313,6 +312,7 @@
         inherit khinsider;
         # C/C++ pkgs
         inherit
+          fireplace
           scopehal-sigrok-bridge
           scopehal-uhd-bridge
           scopelhal-apps
