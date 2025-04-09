@@ -63,6 +63,9 @@
       khinsider = pkgs.callPackage "${pythondir}/khinsider.nix" { };
 
       # C/C++ pkgs
+      cppdir = ./src/cpp;
+      rf2dfieldsolver = pkgs.qt6Packages.callPackage "${cppdir}/rf2dfieldsolver.nix" { };
+
       fireplace = pkgs.stdenv.mkDerivation {
         pname = "fireplace";
         version = "0.0.0";
@@ -312,6 +315,7 @@
         inherit khinsider;
         # C/C++ pkgs
         inherit
+          rf2dfieldsolver
           fireplace
           scopehal-sigrok-bridge
           scopehal-uhd-bridge
