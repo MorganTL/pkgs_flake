@@ -62,6 +62,10 @@
       pythondir = ./src/python;
       khinsider = pkgs.callPackage "${pythondir}/khinsider.nix" { };
 
+      # Godot pkgs
+      godotdir = ./src/godot;
+      age-of-war = pkgs.callPackage "${godotdir}/age-of-war.nix" { };
+
       # C/C++ pkgs
       cppdir = ./src/cpp;
       rf2dfieldsolver = pkgs.qt6Packages.callPackage "${cppdir}/rf2dfieldsolver.nix" { };
@@ -313,6 +317,8 @@
           ;
         # Python pkgs
         inherit khinsider;
+        # Godot pgks
+        inherit age-of-war;
         # C/C++ pkgs
         inherit
           rf2dfieldsolver
