@@ -86,40 +86,15 @@
       };
 
       # from https://github.com/NixOS/nixpkgs/pull/336646
-      ffts = pkgs.stdenv.mkDerivation rec {
-        pname = "ffts";
-        version = "unstable-2019-03-19";
-
-        src = pkgs.fetchFromGitHub {
-          owner = "linkotec";
-          repo = "ffts";
-          rev = "2c8da4877588e288ff4cd550f14bec2dc7bf668c";
-          hash = "sha256-Cj0n7fwFAu6+3ojgczL0Unobdx/XzGNFvNVMXdyHXE4=";
-        };
-
-        nativeBuildInputs = with pkgs; [
-          cmake
-          git
-        ];
-        buildInputs = [ ];
-
-        cmakeFlags = [
-          "-DCURRENT_GIT_VERSION=${pkgs.lib.substring 0 7 src.rev}"
-          "-DENABLE_SHARED=ON"
-          "-Wno-deprecated"
-        ];
-
-      };
-
-      scopelhal-apps = pkgs.stdenv.mkDerivation rec {
+      scopehal-apps = pkgs.stdenv.mkDerivation {
         pname = "ngscopeclient";
-        version = "unstable-master";
+        version = "0-unstable-2025-04-14";
 
         src = pkgs.fetchFromGitHub {
           owner = "ngscopeclient";
           repo = "scopehal-apps";
-          rev = "d5cd16777dcdb88603042bbbd44c318bb9a36b44";
-          hash = "sha256-QssNo+6vM1qtQSpGn+ciEhDG8PIrNrmqxm/kUb4NODQ=";
+          rev = "9f2d72b60200b4e67873c430a478dd9acc1fc84f";
+          hash = "sha256-6IYup6odSkKHofQi+U/pqAOuXMR1ykwKBtpjRjj3p08=";
           fetchSubmodules = true;
         };
 
@@ -128,32 +103,33 @@
           wrapGAppsNoGuiHook
         ];
 
-        buildInputs = [
-          pkgs.pkg-config
-          pkgs.libsigcxx
-          pkgs.gtkmm3
-          pkgs.cairomm
-          pkgs.yaml-cpp
-          pkgs.catch2
-          pkgs.glfw
-          pkgs.libtirpc
-          pkgs.liblxi
-          pkgs.glew
-          pkgs.libllvm
-          pkgs.libdrm
-          pkgs.elfutils
-          pkgs.xorg.libxcb
-          pkgs.zstd
-          pkgs.xorg.libxshmfence
-          pkgs.xorg.xcbutilkeysyms
-          pkgs.systemd
-          pkgs.vulkan-headers
-          pkgs.vulkan-loader
-          pkgs.vulkan-tools
-          pkgs.spirv-tools
-          pkgs.glslang
-          pkgs.shaderc
+        buildInputs = with pkgs; [
+          cairomm
+          catch2
+          elfutils
           ffts
+          glew
+          glfw
+          glslang
+          gtkmm3
+          libdrm
+          libllvm
+          liblxi
+          libsigcxx
+          libtirpc
+          hidapi
+          pkg-config
+          shaderc
+          spirv-tools
+          systemd
+          vulkan-headers
+          vulkan-loader
+          vulkan-tools
+          xorg.libxcb
+          xorg.libxshmfence
+          xorg.xcbutilkeysyms
+          yaml-cpp
+          zstd
         ];
 
         patch = [ ./dslogic_plus.patch ];
@@ -325,7 +301,7 @@
           fireplace
           scopehal-sigrok-bridge
           scopehal-uhd-bridge
-          scopelhal-apps
+          scopehal-apps
           ;
       };
     };
