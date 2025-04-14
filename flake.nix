@@ -86,7 +86,7 @@
       };
 
       # from https://github.com/NixOS/nixpkgs/pull/336646
-      scopehal-apps = pkgs.stdenv.mkDerivation {
+      scopehal-apps = pkgs.stdenv.mkDerivation rec {
         pname = "ngscopeclient";
         version = "0-unstable-2025-04-14";
 
@@ -140,6 +140,11 @@
             --replace '"/share/' '"/../share/'
         '';
 
+        # Force XWayland to bypass window scaling issue
+        # see https://github.com/ngscopeclient/scopehal-apps/issues/824
+        postInstall = ''
+          wrapProgram $out/bin/${pname} --set XDG_SESSION_TYPE x11
+        '';
       };
 
       # from https://github.com/NixOS/nixpkgs/blob/ab70b01c83dd5ba876d8d79ef5cba24ef185c8c9/pkgs/applications/science/electronics/dsview/libsigrok4dsl.nix
