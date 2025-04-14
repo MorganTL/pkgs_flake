@@ -34,6 +34,11 @@ pkgs.stdenv.mkDerivation {
     xorg.libXrandr
   ];
 
+  # Add back export preset for godot headless export
+  patches = [
+    ./0001-add-back-export_presets.cfg.patch
+  ];
+
   buildPhase = ''
     runHook preBuild
 
