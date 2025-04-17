@@ -12,8 +12,8 @@ pkgs.stdenv.mkDerivation {
   src = pkgs.fetchFromGitHub {
     owner = "apiotrowski255";
     repo = "age-of-war";
-    rev = "d5ca8a047e46bbc9a3856aee1b6cbcafa425de6e";
-    hash = "sha256-ZtOVQH0qZiqAndv4mJ2YwQvEgoawENvxEoEu7m6ycEc=";
+    rev = "3cc8e802c381795f8c4b47abe54d1569e5249d60";
+    hash = "sha256-ez99ZVJyRZS4pFmerNPGUUJWFKoOEeOcNrjYb+gTa20=";
   };
 
   nativeBuildInputs = [
