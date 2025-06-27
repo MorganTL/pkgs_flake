@@ -69,6 +69,7 @@
       # C/C++ pkgs
       cppdir = ./src/cpp;
       rf2dfieldsolver = pkgs.qt6Packages.callPackage "${cppdir}/rf2dfieldsolver.nix" { };
+      skindeep = pkgs.callPackage "${cppdir}/skindeep.nix" { }; # requires game assets
 
       fireplace = pkgs.stdenv.mkDerivation {
         pname = "fireplace";
@@ -302,11 +303,12 @@
         inherit age-of-war;
         # C/C++ pkgs
         inherit
-          rf2dfieldsolver
           fireplace
+          rf2dfieldsolver
+          scopehal-apps
           scopehal-sigrok-bridge
           scopehal-uhd-bridge
-          scopehal-apps
+          skindeep
           ;
       };
     };
