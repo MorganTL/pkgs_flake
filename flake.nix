@@ -69,23 +69,9 @@
       # C/C++ pkgs
       cppdir = ./src/cpp;
       rf2dfieldsolver = pkgs.qt6Packages.callPackage "${cppdir}/rf2dfieldsolver.nix" { };
+      fireplace = pkgs.callPackage "${cppdir}/fireplace.nix" { };
       scopehal-apps = pkgs.callPackage "${cppdir}/scopehal_apps.nix" { };
       skindeep = pkgs.callPackage "${cppdir}/skindeep.nix" { }; # requires game assets
-
-      fireplace = pkgs.stdenv.mkDerivation {
-        pname = "fireplace";
-        version = "0.0.0";
-
-        src = pkgs.fetchFromGitHub {
-          owner = "Wyatt915";
-          repo = "fireplace";
-          rev = "aa2070b73be9fb177007fc967b066d88a37e3408";
-          hash = "sha256-2NUE/zaFoGwkZxgvVCYXxToiL23aVUFwFNlQzEq9GEc=";
-        };
-
-        nativeBuildInputs = with pkgs; [ ncurses ];
-        installFlags = [ "DESTDIR=$(out)/bin" ];
-      };
 
       # from https://github.com/NixOS/nixpkgs/blob/ab70b01c83dd5ba876d8d79ef5cba24ef185c8c9/pkgs/applications/science/electronics/dsview/libsigrok4dsl.nix
       libsigrok4dsl = pkgs.stdenv.mkDerivation {
