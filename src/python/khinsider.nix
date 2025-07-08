@@ -3,11 +3,12 @@ pkgs.python3Packages.buildPythonPackage rec {
   pname = "khinsider";
   version = "0.0.0";
   pyproject = false; # the repo don't use setup.py
+
   src = pkgs.fetchFromGitHub {
-    owner = "obskyr";
+    owner = "IhavenoideawhatIamdoingIamadog";
     repo = "khinsider";
-    rev = "bd7ef673ec7af5ce8f580df8f7a3f0746ff1a1ad";
-    sha256 = "sha256-T3mRTWNjaH0dVxQ2SNr4Xw4PdjLfd3Bp0IsqEGjuS3g=";
+    rev = "2abecf911a655ad70230706167fd8b2f97f5be7f";
+    hash = "sha256-ws+YmZoAG0pjHcmkyuGy2f0A3ThHwdO8FaJB6dZUP3o=";
   };
 
   propagatedBuildInputs = with pkgs; [
