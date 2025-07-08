@@ -60,6 +60,7 @@
 
       # Python pkgs
       pythondir = ./src/python;
+      khidl = pkgs.callPackage "${pythondir}/khidl.nix" { };
       khinsider = pkgs.callPackage "${pythondir}/khinsider.nix" { };
 
       # Godot pkgs
@@ -117,7 +118,10 @@
           tracker
           ;
         # Python pkgs
-        inherit khinsider;
+        inherit
+          khidl
+          khinsider
+          ;
         # Godot pgks
         inherit age-of-war;
         # C/C++ pkgs
