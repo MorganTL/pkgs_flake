@@ -35,7 +35,7 @@
         inherit system;
         overlays = [ (import rust-overlay) ];
       };
-      rust = pkgs.rust-bin.stable."1.81.0".default.override {
+      rust = pkgs.rust-bin.stable."1.85.0".default.override {
         extensions = [ "rust-src" ];
         targets = [ ];
       };
@@ -57,6 +57,7 @@
       plastic-tui = pkgs.callPackage "${rustdir}/plastic-tui.nix" { inherit rustPlatform; };
       lifecycler = pkgs.callPackage "${rustdir}/lifecycler.nix" { inherit nsk; };
       angry-oxide = pkgs.callPackage "${rustdir}/angry-oxide.nix" { inherit rustPlatform; };
+      ftdv = pkgs.callPackage "${rustdir}/ftdv.nix" { inherit rustPlatform; };
 
       # Python pkgs
       pythondir = ./src/python;
@@ -112,6 +113,7 @@
           angry-oxide
           binsider
           confetty
+          ftdv
           lifecycler
           plastic-tui
           tetrs
