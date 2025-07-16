@@ -77,6 +77,7 @@
       scopehal-sigrok-bridge = pkgs.callPackage "${cppdir}/scopehal_sigrok_bridge.nix" { };
       scopehal-uhd-bridge = pkgs.callPackage "${cppdir}/scopehal_uhd_bridge.nix" { };
       skindeep = pkgs.callPackage "${cppdir}/skindeep.nix" { }; # requires game assets
+      c47 = pkgs.callPackage "${cppdir}/c47.nix" { };
     in
     {
       checks.${system}.default = git-hooks.lib.${system}.run {
@@ -130,6 +131,7 @@
         inherit age-of-war;
         # C/C++ pkgs
         inherit
+          c47
           fireplace
           rf2dfieldsolver
           scopehal-apps
