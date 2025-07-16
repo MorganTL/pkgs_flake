@@ -64,6 +64,7 @@
       pythondir = ./src/python;
       khidl = pkgs.callPackage "${pythondir}/khidl.nix" { };
       khinsider = pkgs.callPackage "${pythondir}/khinsider.nix" { };
+      dunefetch = pkgs.callPackage "${pythondir}/dunefetch.nix" { };
 
       # Godot pkgs
       godotdir = ./src/godot;
@@ -124,6 +125,7 @@
           ;
         # Python pkgs
         inherit
+          dunefetch
           khidl
           khinsider
           ;
