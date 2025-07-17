@@ -1,13 +1,13 @@
 { pkgs, ... }:
 pkgs.stdenv.mkDerivation (finalAttr: {
   pname = "c47";
-  version = "00.109.02.07b12";
+  version = "00.109.02.07b11";
 
   src = pkgs.fetchFromGitLab {
     owner = "rpncalculators";
     repo = "c43";
     rev = finalAttr.version;
-    hash = "sha256-wDzSeX7DDdU6Q7L5rgwdm6BeJcLbPTuEzapszn9Qaks=";
+    hash = "sha256-kRVmNTFRkqw4YsDcSgsxV+KWBSZUXZG7JgWHPe5ujKs=";
   };
 
   buildInputs = with pkgs; [
