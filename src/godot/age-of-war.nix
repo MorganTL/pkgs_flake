@@ -1,9 +1,7 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 let
-  # referencing
-  # https://github.com/NixOS/nixpkgs/blob/2349f9de17183971db12ae9e0123dab132023bd7/pkgs/by-name/pi/pixelorama/package.nix#L7
+  # referencing https://github.com/NixOS/nixpkgs/blob/2349f9de17183971db12ae9e0123dab132023bd7/pkgs/by-name/pi/pixelorama/package.nix#L7
   godot = pkgs.godot_4_3;
-  godot_version_folder = lib.replaceStrings [ "-" ] [ "." ] godot.version;
 in
 pkgs.stdenv.mkDerivation {
   pname = "age-of-war";
@@ -17,21 +15,7 @@ pkgs.stdenv.mkDerivation {
   };
 
   nativeBuildInputs = [
-    pkgs.autoPatchelfHook
     godot
-  ];
-
-  runtimeDependencies = with pkgs; [
-    alsa-lib
-    libGL
-    libpulseaudio
-    udev
-    vulkan-loader
-    xorg.libX11
-    xorg.libXcursor
-    xorg.libXext
-    xorg.libXi
-    xorg.libXrandr
   ];
 
   # Add back export preset for godot headless export
@@ -47,8 +31,8 @@ pkgs.stdenv.mkDerivation {
 
     # Link the export-templates to the expected location. The --export commands
     # expects the template-file at .../templates/{godot-version}.stable/linux_x11_64_release
-    mkdir -p $HOME/.local/share/godot/export_templates
-    ln -s "${godot.export-templates-bin}" "$HOME/.local/share/godot/export_templates/${godot_version_folder}"
+    mkdir -p $HOME/.local/share/godot/
+    ln -s "${godot.export-template}"/share/godot/export_templates "$HOME"/.local/share/godot/
 
     mkdir -p build
     godot4 --headless --export-release "Linux" ./build/age-of-war
