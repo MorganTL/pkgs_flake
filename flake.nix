@@ -59,6 +59,7 @@
       angry-oxide = pkgs.callPackage "${rustdir}/angry-oxide.nix" { inherit rustPlatform; };
       ftdv = pkgs.callPackage "${rustdir}/ftdv.nix" { inherit rustPlatform; };
       tattoy = pkgs.callPackage "${rustdir}/tattoy.nix" { };
+      mcat = pkgs.callPackage "${rustdir}/mcat.nix" { };
 
       # Python pkgs
       pythondir = ./src/python;
@@ -118,6 +119,7 @@
           confetty
           ftdv
           lifecycler
+          mcat
           plastic-tui
           tattoy
           tetrs
