@@ -1,6 +1,6 @@
 { pkgs, ... }:
 pkgs.python312Packages.buildPythonPackage rec {
-  pname = "pyfda";
+  pname = "pyfdax";
   version = "0.9.4";
   pyproject = true;
 
