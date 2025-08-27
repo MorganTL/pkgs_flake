@@ -66,6 +66,7 @@
       khidl = pkgs.callPackage "${pythondir}/khidl.nix" { };
       khinsider = pkgs.callPackage "${pythondir}/khinsider.nix" { };
       dunefetch = pkgs.callPackage "${pythondir}/dunefetch.nix" { };
+      pyfda = pkgs.callPackage "${pythondir}/pyfda.nix" { };
 
       # Godot pkgs
       godotdir = ./src/godot;
@@ -130,6 +131,7 @@
           dunefetch
           khidl
           khinsider
+          pyfda
           ;
         # Godot pgks
         inherit age-of-war;
