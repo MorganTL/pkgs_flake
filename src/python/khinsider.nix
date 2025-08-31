@@ -5,11 +5,18 @@ pkgs.python3Packages.buildPythonPackage rec {
   pyproject = false; # the repo don't use setup.py
 
   src = pkgs.fetchFromGitHub {
-    owner = "IhavenoideawhatIamdoingIamadog";
+    owner = "obskyr";
     repo = "khinsider";
-    rev = "2abecf911a655ad70230706167fd8b2f97f5be7f";
-    hash = "sha256-ws+YmZoAG0pjHcmkyuGy2f0A3ThHwdO8FaJB6dZUP3o=";
+    rev = "bd7ef673ec7af5ce8f580df8f7a3f0746ff1a1ad";
+    hash = "sha256-T3mRTWNjaH0dVxQ2SNr4Xw4PdjLfd3Bp0IsqEGjuS3g=";
   };
+
+  patches = [
+    (pkgs.fetchpatch {
+      url = "https://github.com/obskyr/khinsider/pull/110.patch";
+      hash = "sha256-yzuMC6Te60uVXvpGi5/ocie5d4ySMcJwy4RH6S42Hxs=";
+    })
+  ];
 
   propagatedBuildInputs = with pkgs; [
     python3Packages.requests
@@ -17,6 +24,7 @@ pkgs.python3Packages.buildPythonPackage rec {
   ];
   installPhase = ''
     mkdir -p $out/bin
-    install -Dm755 $src/${pname}.py $out/bin/${pname}
+    # install the patches script instead of $src one
+    install -Dm755 ./${pname}.py $out/bin/${pname}
   '';
 }
