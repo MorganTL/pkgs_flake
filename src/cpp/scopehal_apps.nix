@@ -1,14 +1,14 @@
 { pkgs, ... }:
 # from https://github.com/NixOS/nixpkgs/pull/336646
-pkgs.stdenv.mkDerivation rec {
+pkgs.stdenv.mkDerivation (finalAttr: {
   pname = "ngscopeclient";
-  version = "0-unstable-2025-04-14";
+  version = "0.1";
 
   src = pkgs.fetchFromGitHub {
     owner = "ngscopeclient";
     repo = "scopehal-apps";
-    rev = "9f2d72b60200b4e67873c430a478dd9acc1fc84f";
-    hash = "sha256-6IYup6odSkKHofQi+U/pqAOuXMR1ykwKBtpjRjj3p08=";
+    rev = "v${finalAttr.version}";
+    hash = "sha256-AfO6JaWA9ECMI6FkMg/LaAG4QMeZmG9VxHiw0dSJYNM=";
     fetchSubmodules = true;
   };
 
@@ -57,6 +57,6 @@ pkgs.stdenv.mkDerivation rec {
   # Force XWayland to bypass window scaling issue
   # see https://github.com/ngscopeclient/scopehal-apps/issues/824
   postInstall = ''
-    wrapProgram $out/bin/${pname} --set XDG_SESSION_TYPE x11
+    wrapProgram $out/bin/${finalAttr.pname} --set XDG_SESSION_TYPE x11
   '';
-}
+})
