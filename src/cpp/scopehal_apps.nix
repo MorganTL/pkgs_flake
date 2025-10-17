@@ -53,10 +53,4 @@ pkgs.stdenv.mkDerivation (finalAttr: {
     substituteInPlace lib/scopehal/scopehal.cpp \
       --replace '"/share/' '"/../share/'
   '';
-
-  # Force XWayland to bypass window scaling issue
-  # see https://github.com/ngscopeclient/scopehal-apps/issues/824
-  postInstall = ''
-    wrapProgram $out/bin/${finalAttr.pname} --set XDG_SESSION_TYPE x11
-  '';
 })
