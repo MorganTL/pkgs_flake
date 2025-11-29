@@ -60,6 +60,7 @@
       ftdv = pkgs.callPackage "${rustdir}/ftdv.nix" { inherit rustPlatform; };
       tattoy = pkgs.callPackage "${rustdir}/tattoy.nix" { };
       mcat = pkgs.callPackage "${rustdir}/mcat.nix" { };
+      vitaly = pkgs.callPackage "${rustdir}/vitaly.nix" { };
 
       # Python pkgs
       pythondir = ./src/python;
@@ -125,6 +126,7 @@
           tattoy
           tetrs
           tracker
+          vitaly
           ;
         # Python pkgs
         inherit
