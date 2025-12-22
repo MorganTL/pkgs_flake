@@ -12,6 +12,12 @@ rustPlatform.buildRustPackage {
   cargoHash = "sha256-7aJSlC9InJA7six2mqQhppP3FrfTX1JUZ6h7mJuWpZk=";
   useFetchCargoVendor = true;
 
+  # Cargo.lock is missing in the repo, patch it in
+  # To get Cargo.lock:
+  # 1 `git clone <repo-url>`
+  # 2 `nix-shell -p rustup`
+  # 3 `rustup update`
+  # 4 `cargo build`
   cargoPatches = [
     # a patch file to add/update Cargo.lock in the source code
     ./tetrs-add-cargo-lock.patch
