@@ -1,56 +1,16 @@
 { pkgs, ... }:
-# from https://github.com/NixOS/nixpkgs/pull/336646
-pkgs.stdenv.mkDerivation (finalAttr: {
-  pname = "ngscopeclient";
+let
   version = "0.1";
-
+in
+pkgs.scopehal-apps.overrideAttrs (oldAttr: {
+  inherit version;
   src = pkgs.fetchFromGitHub {
     owner = "ngscopeclient";
     repo = "scopehal-apps";
-    rev = "v${finalAttr.version}";
+    rev = "v${version}";
     hash = "sha256-AfO6JaWA9ECMI6FkMg/LaAG4QMeZmG9VxHiw0dSJYNM=";
     fetchSubmodules = true;
   };
 
-  nativeBuildInputs = with pkgs; [
-    cmake
-    wrapGAppsNoGuiHook
-  ];
-
-  buildInputs = with pkgs; [
-    cairomm
-    catch2
-    elfutils
-    ffts
-    glew
-    glfw
-    glslang
-    gtkmm3
-    libdrm
-    libllvm
-    liblxi
-    libsigcxx
-    libtirpc
-    hidapi
-    pkg-config
-    shaderc
-    spirv-tools
-    systemd
-    vulkan-headers
-    vulkan-loader
-    vulkan-tools
-    xorg.libxcb
-    xorg.libxshmfence
-    xorg.xcbutilkeysyms
-    yaml-cpp
-    zstd
-  ];
-
-  patch = [ ./dslogic_plus.patch ];
-
-  # Targets InitializeSearchPaths
-  postPatch = ''
-    substituteInPlace lib/scopehal/scopehal.cpp \
-      --replace '"/share/' '"/../share/'
-  '';
+  patches = oldAttr.patches or [ ] ++ [ ./dslogic_plus.patch ];
 })
