@@ -4,19 +4,13 @@ pkgs.python3Packages.buildPythonPackage rec {
   version = "0.0.0";
   pyproject = false; # the repo don't use setup.py
 
+  # Using fork instead of obskyr repo due to obskyr not merging the PR
   src = pkgs.fetchFromGitHub {
-    owner = "obskyr";
+    owner = "checkerberry";
     repo = "khinsider";
-    rev = "bd7ef673ec7af5ce8f580df8f7a3f0746ff1a1ad";
-    hash = "sha256-T3mRTWNjaH0dVxQ2SNr4Xw4PdjLfd3Bp0IsqEGjuS3g=";
+    rev = "f84c14be25d1ed8de7f88892990397e1ec6e376f";
+    hash = "sha256-ff9S5+Pl9wjnaxx4uCa65LcGCgvgh2ekQtRDgP0TrvE=";
   };
-
-  patches = [
-    (pkgs.fetchpatch {
-      url = "https://github.com/obskyr/khinsider/pull/110.patch";
-      hash = "sha256-yzuMC6Te60uVXvpGi5/ocie5d4ySMcJwy4RH6S42Hxs=";
-    })
-  ];
 
   propagatedBuildInputs = with pkgs; [
     python3Packages.requests
