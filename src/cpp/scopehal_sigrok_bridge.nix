@@ -1,6 +1,7 @@
 { pkgs, ... }:
 let
   # from https://github.com/NixOS/nixpkgs/blob/ab70b01c83dd5ba876d8d79ef5cba24ef185c8c9/pkgs/applications/science/electronics/dsview/libsigrok4dsl.nix
+  # No use updating libsigrok4DSL as the sigrok bridge only works on certain version of libsigrok4dsl
   libsigrok4dsl = pkgs.stdenv.mkDerivation {
     pname = "libsigrok4dsl";
     version = "1.12";
