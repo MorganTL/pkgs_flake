@@ -73,6 +73,8 @@ pkgs.stdenv.mkDerivation {
   postPatch = ''
     substituteInPlace src/main.cpp \
       --replace '"/usr/local/share/DSView/res/' '"${libsigrok4dsl.src}/DSView/res/'
+    substituteInPlace CMakeLists.txt \
+      --replace-fail 'cmake_minimum_required(VERSION 3.3)' 'cmake_minimum_required(VERSION 3.10)'
   '';
 
 }
