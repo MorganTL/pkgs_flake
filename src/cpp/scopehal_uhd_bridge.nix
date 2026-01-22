@@ -23,7 +23,7 @@ pkgs.stdenv.mkDerivation {
   # bypass error: format not a string literal and no format arguments
   hardeningDisable = [ "format" ];
 
-  # NOTE: use  "cp * $out" to check where is the executable
+  # NOTE: use  "cp -R * $out" to check where is the executable
   # No install phase in make file
   installPhase = ''
     mkdir -p $out/bin
