@@ -1,0 +1,34 @@
+From 0d0af650eae5354d6f743cff19d9d654ace39ce9 Mon Sep 17 00:00:00 2001
+From: morgan <chengtz414@gmail.com>
+Date: Wed, 18 Feb 2026 17:58:02 +0800
+Subject: [PATCH] remove lsb_release
+
+---
+ CMakeLists.txt | 11 ++---------
+ 1 file changed, 2 insertions(+), 9 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index fc0340c1..5ebc9b94 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -337,15 +337,8 @@ set(CPACK_STRIP_FILES TRUE)
+ 
+ # Figure out what distro version we're on
+ if(LINUX)
+-	find_program(LSB_RELEASE_EXEC lsb_release REQUIRED)
+-	execute_process(COMMAND ${LSB_RELEASE_EXEC} -is
+-		OUTPUT_VARIABLE DISTRO_NAME
+-		OUTPUT_STRIP_TRAILING_WHITESPACE
+-		COMMAND_ERROR_IS_FATAL ANY)
+-	execute_process(COMMAND ${LSB_RELEASE_EXEC} -rs
+-		OUTPUT_VARIABLE DISTRO_VER
+-		OUTPUT_STRIP_TRAILING_WHITESPACE
+-		COMMAND_ERROR_IS_FATAL ANY)
++	set(DISTRO_NAME "NixOS")
++	set(DISTRO_VER "Unstable")
+ 
+ 	message(STATUS "Linux distribution target for packaging: name ${DISTRO_NAME}, version ${DISTRO_VER}")
+ 
+-- 
+2.52.0
+
