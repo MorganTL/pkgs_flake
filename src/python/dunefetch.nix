@@ -2,6 +2,7 @@
 pkgs.python3Packages.buildPythonPackage {
   pname = "dunefetch";
   version = "0-unstable-2025-7-16";
+  pyproject = true;
 
   src = pkgs.fetchFromGitHub {
     owner = "datavorous";
