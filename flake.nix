@@ -88,7 +88,7 @@
         src = ./.;
         hooks = {
           deadnix.enable = true;
-          nixfmt-rfc-style.enable = true;
+          nixfmt.enable = true;
           statix = {
             enable = true;
             settings.config = "./statix.toml";
