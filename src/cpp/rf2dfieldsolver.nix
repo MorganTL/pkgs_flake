@@ -1,6 +1,5 @@
 {
   pkgs,
-  qt6,
   qmake,
   wrapQtAppsHook,
 }:
@@ -19,9 +18,6 @@ pkgs.stdenv.mkDerivation rec {
   nativeBuildInputs = [
     qmake
     wrapQtAppsHook
-  ];
-  buildInputs = [
-    qt6.full
   ];
 
   installPhase = ''
