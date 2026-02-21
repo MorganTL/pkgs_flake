@@ -4,13 +4,12 @@ rustPlatform.buildRustPackage {
   pname = "tetrs_terminal";
   src = pkgs.fetchFromGitHub {
     owner = "Strophox";
-    repo = "tetrs";
+    repo = "tetro-tui";
     rev = "93dc5f6700d32c6d948428a4f6d86c97e33a9764";
     hash = "sha256-lv39ftC6RuYdbMHsiZPMST9Ewtl7lwHl0qAn8VqmoWk=";
   };
 
   cargoHash = "sha256-7aJSlC9InJA7six2mqQhppP3FrfTX1JUZ6h7mJuWpZk=";
-  useFetchCargoVendor = true;
 
   # Cargo.lock is missing in the repo, patch it in
   # To get Cargo.lock:

@@ -13,7 +13,6 @@ pkgs.rustPlatform.buildRustPackage (finalAttrs: {
   # bypass https://github.com/tattoy-org/tattoy/pull/104#issuecomment-3045996096
   doCheck = false;
   cargoHash = "sha256-871Eehi10lcOmpSUeuvqeuOAbk/ryX3jXhdP5WC+/Rc=";
-  useFetchCargoVendor = true;
 
   nativeBuildInputs = with pkgs; [
     pkg-config

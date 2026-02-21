@@ -11,7 +11,6 @@ pkgs.rustPlatform.buildRustPackage (finalAttrs: {
   };
 
   cargoHash = "sha256-PIuPUs+EgotYml0EQgDJHM4HOIf8eTSGr/DtKENs1cY=";
-  useFetchCargoVendor = true;
 
   # bloats that mcat needs
   buildInputs = with pkgs; [
