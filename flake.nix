@@ -82,6 +82,7 @@
       scopehal-uhd-bridge = pkgs.callPackage "${cppdir}/scopehal_uhd_bridge.nix" { };
       skindeep = pkgs.callPackage "${cppdir}/skindeep.nix" { }; # requires game assets
       c47 = pkgs.callPackage "${cppdir}/c47.nix" { };
+      pulse-visualizer = pkgs.callPackage "${cppdir}/pulse_visualizer.nix" { };
     in
     {
       checks.${system}.default = git-hooks.lib.${system}.run {
@@ -141,6 +142,7 @@
         inherit
           c47
           fireplace
+          pulse-visualizer
           rf2dfieldsolver
           scopehal-apps
           scopehal-sigrok-bridge
