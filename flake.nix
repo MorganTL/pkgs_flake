@@ -61,6 +61,7 @@
       tattoy = pkgs.callPackage "${rustdir}/tattoy.nix" { };
       mcat = pkgs.callPackage "${rustdir}/mcat.nix" { };
       vitaly = pkgs.callPackage "${rustdir}/vitaly.nix" { };
+      ratty = pkgs.callPackage "${rustdir}/ratty.nix" { };
 
       # Python pkgs
       pythondir = ./src/python;
@@ -124,6 +125,7 @@
           lifecycler
           mcat
           plastic-tui
+          ratty
           tattoy
           tetrs
           tracker
