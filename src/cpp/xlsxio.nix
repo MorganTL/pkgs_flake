@@ -16,4 +16,9 @@ pkgs.stdenv.mkDerivation (finalAttr: {
     minizip
     zlib
   ];
+
+  cmakeFlags = [
+    "'-GUnix Makefiles'"
+    "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
+  ];
 })
