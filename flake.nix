@@ -62,6 +62,7 @@
       mcat = pkgs.callPackage "${rustdir}/mcat.nix" { };
       vitaly = pkgs.callPackage "${rustdir}/vitaly.nix" { };
       ratty = pkgs.callPackage "${rustdir}/ratty.nix" { };
+      dp832-multitool = pkgs.callPackage "${rustdir}/dp832-multitool.nix" { inherit nsk; };
 
       # Python pkgs
       pythondir = ./src/python;
@@ -121,6 +122,7 @@
           angry-oxide
           binsider
           confetty
+          dp832-multitool
           ftdv
           lifecycler
           mcat
